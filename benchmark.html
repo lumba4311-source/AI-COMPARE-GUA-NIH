@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchmark AI</title>
+
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family:"Inter",system-ui,sans-serif;
+    background:radial-gradient(circle at top,#0b1c2d,#05070c 70%);
+    color:#eaf6ff;
+}
+
+/* MAIN */
+.main-content{
+    max-width:1200px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    margin-bottom:40px;
+    animation:fadeDown .7s ease;
+}
+.header h1{
+    color:#2ef2c2;
+    font-size:32px;
+}
+.header p{
+    color:#9fb8d9;
+}
+
+/* CARD */
+.card{
+    background:linear-gradient(180deg,#0b1625,#070e18);
+    border-radius:18px;
+    padding:28px;
+    margin-bottom:30px;
+    box-shadow:0 25px 60px rgba(0,0,0,.5);
+    animation:fadeUp .8s ease;
+}
+.card h2{
+    color:#27c7ff;
+    margin-bottom:20px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:24px;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:none}
+}
+@keyframes fadeDown{
+    from{opacity:0;transform:translateY(-20px)}
+    to{opacity:1;transform:none}
+}
+
+@media(max-width:768px){
+    .main-content{margin-left:0}
+}
+
+.btn-back {
+            padding: 10px 18px;
+            border: 2px solid #2ef2c2;
+            background: transparent;
+            color: #2ef2c2;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-back:hover {
+            background: #2ef2c2;
+            color: #041014;
+        }
+</style>
+</head>
+
+<body>
+
+    
+
+<!-- MAIN -->
+<div class="main-content">
+    <button class="btn-back" onclick="history.back()">← Kembali</button>
+
+    <div class="header">
+        <h1>Benchmark AI</h1>
+        <p>Perbandingan performa model AI berdasarkan beberapa metrik</p>
+    </div>
+
+    <!-- PERFORMANCE -->
+    <div class="card">
+        <h2>Performa Umum</h2>
+        <canvas id="performanceChart"></canvas>
+    </div>
+
+    <!-- DETAIL -->
+    <div class="grid">
+        <div class="card">
+            <h2>Kecepatan Respon</h2>
+            <canvas id="speedChart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Akurasi Jawaban</h2>
+            <canvas id="accuracyChart"></canvas>
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+<script>
+/* PERFORMANCE */
+new Chart(document.getElementById('performanceChart'), {
+    type: 'radar',
+    data: {
+        labels: ['Kecepatan', 'Akurasi', 'Konsistensi', 'Efisiensi', 'Stabilitas'],
+        datasets: [
+            {
+                label: 'Gemma',
+                data: [78, 85, 80, 75, 82],
+                borderColor: '#2ef2c2',
+                backgroundColor: 'rgba(46,242,194,.2)'
+            },
+            {
+                label: 'Nemotron',
+                data: [85, 88, 83, 82, 86],
+                borderColor: '#27c7ff',
+                backgroundColor: 'rgba(39,199,255,.2)'
+            }
+        ]
+    },
+    options:{
+        plugins:{legend:{labels:{color:'#eaf6ff'}}},
+        scales:{r:{grid:{color:'rgba(255,255,255,.1)'},pointLabels:{color:'#eaf6ff'},ticks:{display:false}}}
+    }
+});
+
+/* SPEED */
+new Chart(document.getElementById('speedChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Gemma', 'Nemotron'],
+        datasets: [{
+            label: 'ms',
+            data: [420, 310],
+            backgroundColor: ['#2ef2c2','#27c7ff']
+        }]
+    },
+    options:{
+        plugins:{legend:{display:false}},
+        scales:{
+            x:{ticks:{color:'#eaf6ff'}},
+            y:{ticks:{color:'#eaf6ff'},grid:{color:'rgba(255,255,255,.1)'}}
+        }
+    }
+});
+
+/* ACCURACY */
+new Chart(document.getElementById('accuracyChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Gemma','Nemotron'],
+        datasets: [{
+            data: [85, 90],
+            backgroundColor: ['#2ef2c2','#27c7ff']
+        }]
+    },
+    options:{
+        plugins:{legend:{labels:{color:'#eaf6ff'}}}
+    }
+});
+</script>
+
+</body>
+</html>
