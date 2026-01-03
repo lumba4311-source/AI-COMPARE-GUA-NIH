@@ -66,4 +66,8 @@ UI menggunakan konsep glassmorphism, sidebar interaktif, dan render Markdown rea
 
     AI Compare
     Dibangun sebagai project UAS Kecerdasan Buatan Semester 5
+
     oleh Surya Dwiky Candra Wijaya  🚀
+
+    LINK DEMO YOUTUBE
+    https://youtu.be/Z5BkAcJA4wk
